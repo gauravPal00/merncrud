@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from 'react-bootstrap/esm/Button';
 import { AiFillEdit } from 'react-icons/ai'
 import { AiFillDelete } from 'react-icons/ai'
 import { useDispatch } from 'react-redux';
@@ -21,8 +22,8 @@ export const TableData = ({ item }) => {
             <td>{item.number}</td>
             <td>{item.state}</td>
             <td>{item.city}</td>
-            <td> <button onClick={()=>{editHandler(item)}}><AiFillEdit /></button> </td>
-            <td> <button onClick={() => {dispatch(deleteUser(item._id)) }}> <AiFillDelete /> </button></td>
+            <td> <Button onClick={()=>{editHandler(item)}}><AiFillEdit /></Button> </td>
+            <td> <Button onClick={() => {dispatch(deleteUser(item._id)) }}> <AiFillDelete /> </Button></td>
             </tr>
         </>
 

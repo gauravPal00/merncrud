@@ -1,5 +1,6 @@
 
 import './App.css';
+import 'react-toastify/dist/ReactToastify.css';
 import {AddUser} from '../src/components/user/AddUser'
 import {AllUser} from '../src/components/user/AllUser'
 import {

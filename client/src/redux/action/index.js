@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {  toast } from 'react-toastify';
 import { addData, getdata } from './actionCreatore'
 
 const URL = "http://localhost:8000";
@@ -7,10 +8,11 @@ const URL = "http://localhost:8000";
 export const postData = (data)=>{
     return  dispatch =>{
         axios.post(`${URL}/add`,data).then((res)=>{
-           
-            dispatch(addData(res.data))
+            dispatch(addData(res.data.newUser))
+            toast.success(res.data.message)
         }).catch((err)=>{
             console.log(err);
+            toast.error(err)
         })
     }
 }
@@ -19,11 +21,11 @@ export const postData = (data)=>{
 // get data api
 export const getusers = ()=>{
     return dispatch =>{
-        axios.get(`${URL}/get`).then((res)=>{
-          
+        axios.get(`${URL}/get`).then((res)=>{   
             dispatch(getdata(res.data))
         }).catch((err)=>{
             console.log(err);
+            toast.error(err)
         })
     }
 }
@@ -32,13 +34,13 @@ export const getusers = ()=>{
 // delete api
 
 export const deleteUser = (id)=>{
-    console.log(id);
     return dispatch =>{
         axios.delete(`${URL}/delete/${id}`).then((res)=>{
-            dispatch(getdata(res.data))
-            console.log(res);
+            toast.success(res.data.message)
+            dispatch(getdata(res.data.users))
         }).catch((err)=>{
             console.log(err);
+            toast.error(err)
         })
     }
 }
@@ -48,9 +50,11 @@ export const deleteUser = (id)=>{
 export const updateData = (id,data)=>{
     return dispatch =>{
         axios.put(`${URL}/update/${id}`,data).then((res)=>{
-            dispatch(getdata(res.data))
+            dispatch(getdata(res.data.editUser))
+            toast.success(res.data.message)
         }).catch((err)=>{
             console.log(err);
+            toast.error(err)
         })
     }
 }

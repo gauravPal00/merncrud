@@ -6,11 +6,13 @@ import Container from 'react-bootstrap/esm/Container';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {  postData,updateData } from '../../redux/action';
+import { ToastContainer } from 'react-toastify';
 
 export const AddUser = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const Location = useLocation()
     const id = Location.state?._id
     const data = Location.state 
@@ -40,6 +42,7 @@ export const AddUser = () => {
         setInpval(data)
       }
     },[data])
+    
     const handler = (event)=>{
         setInpval({...inpval,[event.target.name]:event.target.value})
     }
@@ -52,11 +55,11 @@ export const AddUser = () => {
         setValidated(true);
       }
       else{
-
         if(data){
           dispatch(updateData(id,inpval))
           reset()
           setValidated(false);
+          navigate("/alluser")
         }
         else{
           dispatch(postData(inpval))
@@ -149,6 +152,7 @@ export const AddUser = () => {
       }
      
     </Form>
+    <ToastContainer/>
     </Container>
   )
 }

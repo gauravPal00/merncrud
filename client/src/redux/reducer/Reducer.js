@@ -6,7 +6,6 @@ export const MainReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case "GETDATA":
-
             return {
                 list: action.payload
             }
