@@ -5,7 +5,7 @@ import  {Connection}  from './database/db.js';
 import Router from './routes/route.js';
 
 const Port  = 8000
-const app = express()
+	const app = express()
 
 app.use(cors()); 
 app.use(bodyParser.json({ extended: true}));
